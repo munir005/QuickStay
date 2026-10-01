@@ -183,7 +183,7 @@ export const roomCommonData = [
 // User Dummy Data
 export const userDummyData = [
   {
-    _id: crypto.randomUUID(),
+    _id: 'ff615c27-7cf5-41a7-98e4-f025b4938a46',
     username: "Great Stack",
     email: "user.greatstack@gmail.com",
     image:
@@ -197,7 +197,7 @@ export const userDummyData = [
     rating: 4,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: "513d94e0-d2a2-48c3-8601-25a70cc4a6b1",
     username: "Khalid",
     email: "user.khslid@gmail.com",
     image:
@@ -215,7 +215,7 @@ export const userDummyData = [
 // Hotel Dummy Data
 export const hotelDummyData = [
   {
-    _id: crypto.randomUUID(),
+    _id: '7352e023-5235-410f-923e-78303d82777a',
     name: "jelesh konty",
     address: "Main Road  123 Street , 23 Colony",
     contact: "+0123456789",
@@ -226,7 +226,7 @@ export const hotelDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: '9cd6f845-7f83-41c4-ba34-ab07d4e6e97d',
     name: "AlHukam hotels",
     address: "Anar kali bzar  123 Street , 23 Colony",
     contact: "+9223456789",
@@ -241,7 +241,7 @@ export const hotelDummyData = [
 // Rooms Dummy Data
 export const roomsDummyData = [
   {
-    _id: crypto.randomUUID(),
+    _id: '8b5fcd3d-7328-4b8e-8e68-b54859398199',
     hotel: hotelDummyData[0],
     roomType: "Luxury Room",
     pricePerNight: 399,
@@ -256,7 +256,7 @@ export const roomsDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: '957458cc-5959-417a-9a0e-368885b8d0f0',
     hotel: hotelDummyData[0],
     roomType: "Double Bed",
     pricePerNight: 299,
@@ -271,7 +271,7 @@ export const roomsDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: '91a5aa07-e2d0-489e-a3c1-034d5f5d1367',
     hotel: hotelDummyData[1],
     roomType: "Luxury Room",
     pricePerNight: 249,
@@ -286,7 +286,7 @@ export const roomsDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: '4e521898-10cb-4a05-a420-1d94f93afa85',
     hotel: hotelDummyData[0],
     roomType: "Single Bed",
     pricePerNight: 199,
@@ -305,7 +305,7 @@ export const roomsDummyData = [
 // User Bookings Dummy Data
 export const userBookingsDummyData = [
   {
-    _id: crypto.randomUUID(),
+    _id: '54f0f9db-90ca-41ab-b458-847a95df5d8a',
     user: {
       userName: "john doe",
       userContactNo: "0123456789",
@@ -323,7 +323,7 @@ export const userBookingsDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: '5c578e87-b159-4731-8a59-116b4c7a148c',
     user: {
       userName: "clay josf",
       userAddress: "123 street, etc",
@@ -341,7 +341,7 @@ export const userBookingsDummyData = [
     __v: 0,
   },
   {
-    _id: crypto.randomUUID(),
+    _id: 'da935687-44b2-415f-83a2-6ee26f79507d',
     user: {
       userName: "kmary pand",
       userAddress: "123 street, etc",
