@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeForm } from "../../redux-store/isFormOpenSlice/isFormOpen";
 import { useState } from "react";
 import { bookRoom } from "../../redux-store/bookedDataSlice/bookedData";
+import { showToast } from "../../redux-store/toasteSlice/toastSlice";
 
 function RoomRegistration() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userBookedData.userData);
   const room = useSelector((state) => state.isFormOpen.room);
   const dataEdit = useSelector((state) => state.isFormOpen.dataEdit);
-  
+
   let dummyData = {
     _id: crypto.randomUUID(),
     user: {
@@ -19,14 +20,15 @@ function RoomRegistration() {
     },
     room: room,
     hotel: room.hotel,
-    checkInDate: dataEdit.checkIn || `${new Date().toISOString().split("T")[0]}`,
-    checkOutDate: dataEdit.checkOut|| "",
+    checkInDate:
+      dataEdit.checkIn || `${new Date().toISOString().split("T")[0]}`,
+    checkOutDate: dataEdit.checkOut || "",
     totalPrice: room.pricePerNight,
     guests: 1,
     isPaid: dataEdit.isPaid || true,
     __v: 0,
   };
-  
+
   const [userData, setUserData] = useState(dummyData);
 
   const changeState = (e, state) => {
@@ -36,17 +38,22 @@ function RoomRegistration() {
     });
   };
 
-  const handelPayNow = ()=>{
-    setUserData({...userData, isPaid: true})
-  }
-  const handelRegister = ()=>{
-    setUserData({...userData, isPaid: false})
-  }
-  
+  const handelPayNow = () => {
+    setUserData({ ...userData, isPaid: true });
+  };
+  const handelRegister = () => {
+    setUserData({ ...userData, isPaid: false });
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
-    setUserData({...userData, _id: crypto.randomUUID()});
+    setUserData({ ...userData, _id: crypto.randomUUID() });
     dispatch(bookRoom(userData));
+    e.target.reset();
+    dispatch(closeForm());
+    dispatch(
+      showToast({ message: "Room register successfully!", type: "success" }),
+    );
   };
 
   return (
@@ -68,7 +75,6 @@ function RoomRegistration() {
 
         <p className="text-2xl font-semibold mt-6">Register Your Hotel</p>
         <div className="flex flex-col md:flex-row md:gap-7">
-          
           <div className="w-full mt-3">
             <label htmlFor="roomName" className="font-medium text-gray-500">
               Room Name
@@ -232,18 +238,20 @@ function RoomRegistration() {
           </div>
         </div>
         <div className="flex gap-4 mt-4">
-          <button className="bg-green-500 hover:bg-green-600 transition-all text-white  px-6 py-2 rounded cursor-pointer "
-          type="submit" 
-          onClick={()=>{
-            handelPayNow()
-          }}
+          <button
+            className="bg-green-500 hover:bg-green-600 transition-all text-white  px-6 py-2 rounded cursor-pointer "
+            type="submit"
+            onClick={() => {
+              handelPayNow();
+            }}
           >
             Pay Now
           </button>
-          <button className="bg-indigo-500 hover:bg-indigo-600 transition-all text-white  px-6 py-2 rounded cursor-pointer " 
-          onClick={()=>{
-            handelRegister();
-          }}
+          <button
+            className="bg-indigo-500 hover:bg-indigo-600 transition-all text-white  px-6 py-2 rounded cursor-pointer "
+            onClick={() => {
+              handelRegister();
+            }}
           >
             Register
           </button>

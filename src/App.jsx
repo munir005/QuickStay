@@ -11,6 +11,7 @@ import AddRoom from "./pages/hotelOwnerPages/AddRoom";
 import ListOfRooms from "./pages/hotelOwnerPages/ListOfRooms";
 import { useSelector } from "react-redux";
 import RoomRegistration from "./components/RoomRegistrationComponents/RoomRegistration";
+import ToastContainer from "./components/toasterComponents/ToasteContainer";
 
 export default function App() {
   const isFormOpen = useSelector((state) => state.isFormOpen.value);
@@ -18,6 +19,7 @@ export default function App() {
     <div>
       <Navbar />
       {isFormOpen && <RoomRegistration />}
+      <ToastContainer/>
       <div className="min-h-[70vh]">
         <Routes>
           <Route path="/" element={<Home />} />

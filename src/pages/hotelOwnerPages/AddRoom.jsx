@@ -3,9 +3,9 @@ import Title from "../../components/Title";
 import { assets, hotelDummyData } from "../../assets/assets";
 import { useDispatch, useSelector } from "react-redux";
 import { addRoom } from "../../redux-store/roomDataSlice/roomData";
+import { showToast } from "../../redux-store/toasteSlice/toastSlice";
 
 function AddRoom() {
-
   const dispatch = useDispatch();
 
   const [roomImages, setRoomImages] = useState({
@@ -52,18 +52,22 @@ function AddRoom() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    
-      let final = {
-        ...roomData,
-        amenities: amenitiesArr,
-        _id: crypto.randomUUID(),
-        createdAt: `${new Date().toISOString()}`,
-        updatedAt: `${new Date().toISOString()}`,
-      };
 
-      dispatch(addRoom(final));
+    let final = {
+      ...roomData,
+      amenities: amenitiesArr,
+      _id: crypto.randomUUID(),
+      createdAt: `${new Date().toISOString()}`,
+      updatedAt: `${new Date().toISOString()}`,
+    };
 
-
+    dispatch(addRoom(final));
+    dispatch(
+      showToast({
+        message: "Room added successful!",
+        type: "info",
+      }),
+    );
   };
 
   return (
@@ -92,7 +96,7 @@ function AddRoom() {
             />
             <input
               type="file"
-              // required
+              required
               id={`roomImage${imageNumber}`}
               accept="image/*"
               hidden
@@ -122,7 +126,7 @@ function AddRoom() {
           <p className="text-gray-500 mt-4">Room Type</p>
           <select
             value={roomData.roomType}
-            // required
+            required
             onChange={(e) =>
               setRoomData({ ...roomData, roomType: e.target.value })
             }
@@ -141,7 +145,7 @@ function AddRoom() {
           </p>
           <input
             type="number"
-            // required
+            required
             placeholder="eg:100"
             value={roomData.pricePerNight}
             min={0}
@@ -161,7 +165,7 @@ function AddRoom() {
         </label>
         <textarea
           id="description"
-          // required
+          required
           placeholder="Enter description"
           value={roomData.description}
           onChange={(e) => {
@@ -174,7 +178,7 @@ function AddRoom() {
         <label htmlFor="hotelsSelect">Select Hotel</label>
         <select
           value={hotel.name}
-          // required
+          required
           onChange={(e) => {
             hotelDummyData.map((hotel) => {
               if (hotel.name.includes(e.target.value)) {

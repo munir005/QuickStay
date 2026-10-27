@@ -23,13 +23,13 @@ export const userBookedData = createSlice({
         },
         0,
       );
-      state.dashboardData.bookings = state.userData;
+      state.dashboardData.bookings = {...state.userData};
     },
     editUserStatus: (state, action) => {
       const { id, paid }=action.payload;
       let specifiedUser = state.userData.find((user)=> user._id === id)
       specifiedUser.isPaid = paid;
-      state.dashboardData.bookings = state.userData;
+      state.dashboardData.bookings = {...state.userData};
     },
   },
 });

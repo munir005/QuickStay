@@ -2,11 +2,12 @@ import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserStatus } from "../redux-store/bookedDataSlice/bookedData";
+import { showToast } from "../redux-store/toasteSlice/toastSlice";
 
 function MyBooking() {
   const userBookings = useSelector((state) => state.userBookedData.userData);
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "long",
@@ -123,14 +124,21 @@ function MyBooking() {
                     </div>
 
                     {!user.isPaid && (
-                      <button className="rounded-full border border-gray-500 px-5 py-1.5 text-xs text-gray-700 transition hover:bg-gray-100 cursor-pointer"
-                      onClick={()=>{
-                        const data = {
-                          id: user._id,
-                          paid: true,
-                        }
-                        dispatch(editUserStatus(data))
-                      }}
+                      <button
+                        className="rounded-full border border-gray-500 px-5 py-1.5 text-xs text-gray-700 transition hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          const data = {
+                            id: user._id,
+                            paid: true,
+                          };
+                          dispatch(editUserStatus(data));
+                          dispatch(
+                            showToast({
+                              message: "Payment Done!",
+                              type: "info",
+                            }),
+                          );
+                        }}
                       >
                         Pay now
                       </button>
